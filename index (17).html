@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpowerChain | Protocolo de Microfinanzas Descentralizadas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header class="flex justify-between items-center border-b border-slate-800 pb-6 mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-emerald-400">🌱 EmpowerChain Engine</h1>
+                <p class="text-slate-400 text-sm">Microcréditos tokenizados, scoring ESG y desembolso por hitos</p>
+            </div>
+            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full text-xs font-semibold">
+                ● Arbitrum Testnet
+            </span>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Formulario de Emisión -->
+            <div class="bg-slate-800/60 p-6 rounded-xl border border-slate-700">
+                <h2 class="text-lg font-semibold mb-4 text-white">Solicitud y Términos Claros</h2>
+                <form id="loanForm" class="space-y-4">
+                    <div>
+                        <label class="text-xs text-slate-400">Emprendedor (ID/Wallet)</label>
+                        <input id="entrepreneur" type="text" value="EMP-LIMA-001" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm mt-1">
+                    </div>
+                    <div>
+                        <label class="text-xs text-slate-400">Monto del Préstamo (USDC)</label>
+                        <input id="amount" type="number" value="3000" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm mt-1">
+                    </div>
+                    <div>
+                        <label class="text-xs text-slate-400">Tasa de Interés Fija (APR %)</label>
+                        <input id="apr" type="number" value="12" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm mt-1">
+                    </div>
+                    <div>
+                        <label class="text-xs text-slate-400">Score ESG (0 - 100)</label>
+                        <input id="esg" type="range" min="0" max="100" value="88" class="w-full mt-1 accent-emerald-500" oninput="esgVal.innerText = this.value">
+                        <span id="esgVal" class="text-xs text-emerald-400 font-mono">88</span>/100
+                    </div>
+
+                    <div class="p-3 bg-slate-900/80 rounded border border-slate-700 text-xs space-y-1">
+                        <p class="text-slate-400">Desembolso en 2 Hitos:</p>
+                        <p class="text-slate-300">• Hito 1 (Semillas/Insumos): <b>50%</b></p>
+                        <p class="text-slate-300">• Hito 2 (Cosecha/Comercialización): <b>50%</b></p>
+                    </div>
+
+                    <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold py-2 rounded transition">
+                        Emitir Smart Contract
+                    </button>
+                </form>
+            </div>
+
+            <!-- Panel de Control y Auditoría On-Chain -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Métricas Globales -->
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="bg-slate-800/40 p-4 rounded-xl border border-slate-700">
+                        <p class="text-xs text-slate-400">Capital en Custodia</p>
+                        <p id="totalLocked" class="text-xl font-bold text-white mt-1">$3,000</p>
+                    </div>
+                    <div class="bg-slate-800/40 p-4 rounded-xl border border-slate-700">
+                        <p class="text-xs text-slate-400">CO2 Mitigado (Est.)</p>
+                        <p id="carbonTons" class="text-xl font-bold text-emerald-400 mt-1">26.4 Ton</p>
+                    </div>
+                    <div class="bg-slate-800/40 p-4 rounded-xl border border-slate-700">
+                        <p class="text-xs text-slate-400">Estado de Liquidación</p>
+                        <p id="contractStatus" class="text-xl font-bold text-yellow-400 mt-1">Activo</p>
+                    </div>
+                </div>
+
+                <!-- Simulación de Hitos y Mitigación de Default -->
+                <div class="bg-slate-800/60 p-6 rounded-xl border border-slate-700">
+                    <h2 class="text-lg font-semibold mb-4 text-white">Ejecución de Hitos y Protección contra Riesgo</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-slate-900 rounded border border-slate-700">
+                            <div>
+                                <p class="text-sm font-medium">Hito 1: Adquisición de Insumos Agroecológicos</p>
+                                <p class="text-xs text-slate-400">Liberación: $1,500 (50%)</p>
+                            </div>
+                            <button id="btnHito1" onclick="liberarHito(1)" class="bg-slate-700 hover:bg-slate-600 px-3 py-1 text-xs rounded text-slate-200">
+                                Validar y Desembolsar
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-slate-900 rounded border border-slate-700">
+                            <div>
+                                <p class="text-sm font-medium">Hito 2: Verificación de Cosecha / Certificación ESG</p>
+                                <p class="text-xs text-slate-400">Liberación: $1,500 (50%)</p>
+                            </div>
+                            <button id="btnHito2" onclick="liberarHito(2)" class="bg-slate-700 hover:bg-slate-600 px-3 py-1 text-xs rounded text-slate-200">
+                                Validar y Desembolsar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-700 flex justify-between items-center">
+                        <div>
+                            <p class="text-xs text-slate-400">Protocolo de Emergencia</p>
+                            <p class="text-xs text-red-400">Si el emprendedor abandona el proyecto</p>
+                        </div>
+                        <button onclick="ejecutarDefault()" class="border border-red-500/40 text-red-400 hover:bg-red-500/10 px-3 py-1.5 rounded text-xs">
+                            Ejecutar Default y Recuperar Remanente
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Consola On-Chain -->
+                <div class="bg-black/80 p-4 rounded-xl border border-slate-800 font-mono text-xs text-slate-400 h-36 overflow-y-auto" id="consoleLogs">
+                    <p class="text-emerald-400">> Smart Contract inicializado en bloque génesis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let fondosDisbursados = 0;
+        let montoTotal = 3000;
+
+        function log(msg) {
+            const c = document.getElementById('consoleLogs');
+            c.innerHTML += `<p>> ${msg}</p>`;
+            c.scrollTop = c.scrollHeight;
+        }
+
+        function liberarHito(num) {
+            const tranche = montoTotal * 0.5;
+            fondosDisbursados += tranche;
+            log(`<span class="text-emerald-400">Hito ${num} validado on-chain.</span> Desembolso de $${tranche} enviado al emprendedor.`);
+            document.getElementById(`btnHito${num}`).disabled = true;
+            document.getElementById(`btnHito${num}`).innerText = "Desembolsado ✓";
+            document.getElementById(`btnHito${num}`).className = "bg-emerald-900/50 text-emerald-400 px-3 py-1 text-xs rounded cursor-not-allowed";
+        }
+
+        function ejecutarDefault() {
+            const remanente = montoTotal - fondosDisbursados;
+            document.getElementById('contractStatus').innerText = "Default (Cerrado)";
+            document.getElementById('contractStatus').className = "text-xl font-bold text-red-400 mt-1";
+            log(`<span class="text-red-400">EVENTO DE DEFAULT ACTIVADO:</span> Smart contract bloqueado. Remanente de $${remanente} protegido y reintegrado al inversionista.`);
+        }
+
+        document.getElementById('loanForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amt = parseFloat(document.getElementById('amount').value);
+            const esg = parseInt(document.getElementById('esg').value);
+            montoTotal = amt;
+            fondosDisbursados = 0;
+            const tons = ((amt * esg) / 10000).toFixed(1);
+            
+            document.getElementById('totalLocked').innerText = `$${amt.toLocaleString()}`;
+            document.getElementById('carbonTons').innerText = `${tons} Ton`;
+            document.getElementById('contractStatus').innerText = "Activo";
+            document.getElementById('contractStatus').className = "text-xl font-bold text-yellow-400 mt-1";
+            log(`Nuevo contrato emitido con éxito. Score ESG: ${esg} | Impacto estimado: ${tons} Ton CO2.`);
+        });
+    </script>
+</body>
+</html>
