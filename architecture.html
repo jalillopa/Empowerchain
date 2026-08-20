@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EmpowerChain - Arquitectura Técnica</title>
+  <style>
+    :root {
+      --bg-main: #0b111e;
+      --bg-card: #151f32;
+      --bg-card-hover: #1c2a44;
+      --primary-green: #10b981;
+      --primary-blue: #0ea5e9;
+      --accent-purple: #8b5cf6;
+      --accent-red: #ef4444;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: #24344d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--primary-green);
+      border: 1px solid var(--primary-green);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #10b981, #0ea5e9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary-blue);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .diagram-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 35px;
+      margin-bottom: 40px;
+    }
+
+    .diagram-section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+      color: #fff;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .flow-step:last-child {
+      border-bottom: none;
+    }
+
+    .step-num {
+      background: var(--primary-blue);
+      color: #fff;
+      font-weight: bold;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .code-box {
+      background: #060911;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 15px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.9rem;
+      color: #38bdf8;
+      overflow-x: auto;
+      margin-top: 15px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary-green);
+      color: #062b1e;
+    }
+
+    .btn-secondary {
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid var(--border-color);
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Arbitrum One / Arbitrum Sepolia</div>
+      <h1>Arquitectura de EmpowerChain</h1>
+      <p class="subtitle">
+        Protocolo de microfinanzas descentralizadas con scoring predictivo mediante IA, custodia programable y trazabilidad ESG inmutable on-chain.
+      </p>
+    </header>
+
+    <!-- 4 Pilares -->
+    <section class="grid-4">
+      <div class="card">
+        <h3 style="color: var(--primary-green);">🌐 1. Conexión P2P</h3>
+        <p>Enlace directo sin intermediación bancaria tradicional entre inversionistas de impacto globales y microemprendedores.</p>
+      </div>
+      <div class="card">
+        <h3 style="color: var(--primary-blue);">🧠 2. Scoring con IA</h3>
+        <p>Evaluación crediticia multifactorial sin requerir historial bancario previo, analizando patrones productivos y viabilidad.</p>
+      </div>
+      <div class="card">
+        <h3 style="color: var(--accent-purple);">🌱 3. Auditoría ESG</h3>
+        <p>Monitoreo y certificación de impacto ambiental (toneladas de CO₂ mitigadas) registradas de forma verificable on-chain.</p>
+      </div>
+      <div class="card">
+        <h3 style="color: var(--accent-red);">🛡️ 4. Custodia por Hitos</h3>
+        <p>Desembolso inteligente en 2 tramos condicionados y protocolo de recuperación automática ante contingencias o default.</p>
+      </div>
+    </section>
+
+    <!-- Flujo del Smart Contract -->
+    <section class="diagram-section">
+      <h2>Flujo Operativo del Contrato (EmpowerChainEngine.sol)</h2>
+      
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Solicitud y Configuración de Términos</h4>
+          <p>El emprendedor registra el monto ($3,000 USDC), APR fija (12%) y Score ESG (88/100). El contrato se inicializa con estado <code>Active</code>.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Custodia y Hito 1 (50%)</h4>
+          <p>El capital recaudado entra en custodia del Smart Contract. Al verificarse la compra de insumos agroecológicos, se liberan $1,500.</p>
+          <div class="code-box">> Hito 1 validado on-chain. Desembolso de $1500 enviado al emprendedor.</div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Hito 2 (50%) y Certificación ESG</h4>
+          <p>Validación de cosecha y auditoría de impacto (26.4 Ton CO₂). Se desembolsan los $1,500 restantes y el préstamo pasa a <code>Completed</code>.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Mecanismo de Mitigación de Default</h4>
+          <p>Si el proyecto se abandona, el protocolo ejecuta <code>emergencyDefault()</code>, bloquea el Smart Contract y reembolsa el remanente en custodia al inversionista.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enlaces Rápidos -->
+    <div class="actions">
+      <a class="btn btn-primary" href="https://remix.ethereum.org/#gist=32ddcee9769a6485f89413034e22fcc2" target="_blank">Abrir Smart Contract en Remix</a>
+      <a class="btn btn-secondary" href="https://github.com/jalillopa/Empowerchain" target="_blank">Ver Repositorio en GitHub</a>
+    </div>
+  </div>
+</body>
+</html>
