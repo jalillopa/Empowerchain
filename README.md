@@ -16,3 +16,22 @@ EmpowerChain conecta microemprendedores no bancarizados con inversionistas de im
 ## 🛠️ Estructura del Repositorio
 - `/contracts`: Código fuente del Smart Contract en Rust (`EmpowerChainEngine.rs`).
 - `/demo`: Prototipo de interfaz web interactiva (`index.html`).
+
+## 🚀 Instrucciones de Despliegue (Arbitrum Stylus / Testnet)
+
+Para compilar y desplegar el contrato inteligente en Rust:
+
+```bash
+# 1. Clonar el repositorio
+git clone [https://github.com/jalillopa/Empowerchain.git](https://github.com/jalillopa/Empowerchain.git)
+cd Empowerchain
+
+# 2. Configurar el compilador WASM y Stylus CLI
+rustup target add wasm32-unknown-unknown
+cargo install cargo-stylus
+
+# 3. Verificar el contrato
+cargo stylus check
+
+# 4. Desplegar en Arbitrum Sepolia
+cargo stylus deploy --private-key=<TU_PRIVATE_KEY> --endpoint=[https://sepolia-rollup.arbitrum.io/rpc](https://sepolia-rollup.arbitrum.io/rpc)
